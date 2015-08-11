@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Syntax</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <style>
+      code .var { color: #7c9f7d; }
+      code .kw { color: #9f7069; }
+      code .ty { color: #70699f; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>Syntax</h1>
+      </div>
+      <pre><code><span class="var">map!</span> <span class="kw">[</span><span class="ty">a</span>, </span><span class="ty">b</span><span class="kw">]</span> (<span class="var">func</span> <span class="kw">:</span> <span class="ty">a -> b</span>) (<span class="var">array</span> <span class="kw">:</span> <span class="ty">!Array a</span>) <span class="kw">:</span> <span class="ty">!Array b</span> <span class="kw">= ..</span>
+  (<span class="var">x</span>, <span class="var">xs</span>) <span class="kw">=</span> uncons! array
+  cons! (func x) (map! func xs)</code></pre>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
