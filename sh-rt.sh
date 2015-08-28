@@ -35,7 +35,7 @@ _ts_rt_get() {
 # SLOW: this if-check alone costs 50ms on Windows!
 # perhaps we should find cheaper methods even if they are less reliable,
 # and only fallback to subshell if absolutely necessary?
-if ( eval ': $((0))' >/dev/null 2>&1 )
+if ( eval '[ $((1 + 2)) = 3 ]' >/dev/null 2>&1 )
 then
     eval '_ts_rt_expr() {
         _ts_rt_r1=$1
@@ -77,13 +77,19 @@ _ts_pop() {
 # these functions use the proper calling convention
 # but also use internal registers (_ts_rt_rN)
 # ----------------------------------------------------------------------------
-
-_ts_escape() {
-    _ts_rt_r1="s/'/'\\\\''/g"
-    # SLOW: this costs 190ms on Windows!
-    _ts_r=\'`printf "%s" "$1" | sed "$_ts_rt_r1"`\'
-    unset _ts_rt_r1
-}
+if ( x=aba && eval '[ ${x//a/cd} = cdbcd ]' >/dev/null 2>&1 )
+then
+    _ts_escape() {
+        _ts_r=\'${1//\'/\'\\\'\'}\'
+    }
+else
+    _ts_escape() {
+        _ts_rt_r1="s/'/'\\\\''/g"
+        # (this costs 190ms on Windows!)
+        _ts_r=\'`printf "%s" "$1" | sed "$_ts_rt_r1"; printf "'"`
+        unset _ts_rt_r1
+    }
+fi
 
 # ----------------------------------------------------------------------------
 # these functions use the proper calling convention
